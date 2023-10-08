@@ -240,19 +240,20 @@
   }
 
   .hero h1 {
-    font-size: 35px;
+    font-size: 30px;
     min-width: 90vw;
     font-weight: 500;
   }
 
   .hero p {
-    font-size: 24px;
+    font-size: 22px;
     min-width: 90vw;
   }
 
   .hero button {
-    font-size: 20px;
-    padding: 16px 22px;
+    font-size: 18px;
+    padding: 14px 16px;
+    width: 185px;
   }
 
   .hero img {
@@ -261,8 +262,8 @@
   }
 
   .hero h4 {
-    font-size: 24px;
-    width: 100vw;
+    font-size: 22px;
+    width: 90vw;
   }
 
   .hero ul > li {
@@ -284,6 +285,7 @@
   .upload > .dragDropUpload {
     margin: 1em 0em;
     padding: 40px 40px;
+    margin-bottom: 5em;
   }
   
   .dragDropUpload > p {
@@ -319,6 +321,6 @@
   }
 
   .footer {
-    font-size: 12px;
+    font-size: 10px;
   }
 }

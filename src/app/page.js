@@ -12,7 +12,13 @@ export default function Home() {
         <div className={styles.left}>
           <h1>The Online Image Splitter for your Instagram Grids</h1>
           <p>Free Instagram Grid, Carousel & Puzzle Maker</p>
-          <button>Upload an Image</button>
+          <button onClick={(e) => {
+            let element = document.getElementById("upload")
+            window.scrollTo({
+              top: element.offsetTop,
+              behavior: "smooth"
+            })
+          }}>Upload an Image</button>
         </div>
         <div className={styles.right}>
           <Image
@@ -33,7 +39,7 @@ export default function Home() {
           Start with uploading your IG graphic, photo or puzzle to the Image
           Splitter tool
         </p>
-        <div className={styles.dragDropUpload}>
+        <div id="upload" className={styles.dragDropUpload}>
           <p>Drop your image here or click below to upload</p>
           <button>Select Image</button>
         </div>
