@@ -13,7 +13,6 @@
   width: 50vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   gap: 25px;
 }
@@ -33,7 +32,7 @@
 .hero button {
   width: fit-content;
   padding: 15px 25px;
-  font-size: 20px;
+  font-size: 17px;
   background-color: var(--dark-gray);
   color: var(--light);
 }
@@ -81,6 +80,7 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  align-items: center;
   background-color: var(--gray);
   padding: 4em;
   padding-bottom: 8em;
@@ -146,6 +146,5 @@
   display: flex;
   justify-content: center;
   gap: 30px;
-  width: 100vw;
   color: var(--gray);
 }
