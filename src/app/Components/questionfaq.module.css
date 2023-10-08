@@ -30,3 +30,17 @@
   font-size: 20px;
   transition: all 2s;
 }
+
+@media (max-width: 540px) {
+  .question > p {
+    font-size: 13px;
+  }
+  
+  .answer p {
+    font-size: 12px;
+  }
+  
+  .answer.active {
+    font-size: 12px;
+  }
+}

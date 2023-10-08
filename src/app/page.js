@@ -25,7 +25,7 @@ export default function Home() {
       </section>
       <section className={styles.upload}>
         <p>
-          Create an engagin + beautiful Instagram grid or carousel in seconds
+          Create an engaging + beautiful Instagram grid or carousel in seconds
           with out Grid Maker and download your split images without installing
           an extra app!
         </p>

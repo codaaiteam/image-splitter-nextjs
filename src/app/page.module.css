@@ -8,7 +8,8 @@
   display: flex;
 }
 
-.hero > .left, .hero > .right {
+.hero > .left,
+.hero > .right {
   padding: 75px;
   width: 50vw;
   display: flex;
@@ -147,4 +148,86 @@
   justify-content: center;
   gap: 30px;
   color: var(--gray);
+}
+
+@media (max-width: 540px) {
+  .hero > .left,
+  .hero > .right {
+    padding: 20px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero h4 {
+    font-size: 18px;
+  }
+
+  .hero ul > li {
+    font-size: 14px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    min-width: 100%;
+  }
+
+  .hero button {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .upload {
+    font-size: 13px;
+    padding: 0 10vw;
+  }
+  
+  .upload > .dragDropUpload {
+    margin: 1em 3em;
+    padding: 40px 50px;
+  }
+  
+  .dragDropUpload > p {
+    font-size: 12px;
+  }
+  
+  .dragDropUpload > button {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  
+  .howTo > h3 {
+    font-size: 25px;
+    font-weight: 450;
+  }
+  
+  .howTo > p {
+    font-size: 13px;
+  }
+  
+  .cards {
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+  }
+
+  .faq {
+    margin: 0 0;
+    padding: 3em;
+  }
+  
+  .faq > h3 {
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  .footer {
+    font-size: 12px;
+  }
 }
