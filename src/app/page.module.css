@@ -231,3 +231,94 @@
     font-size: 12px;
   }
 }
+
+@media (max-width: 950px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 35px;
+    min-width: 90vw;
+    font-weight: 500;
+  }
+
+  .hero p {
+    font-size: 24px;
+    min-width: 90vw;
+  }
+
+  .hero button {
+    font-size: 20px;
+    padding: 16px 22px;
+  }
+
+  .hero img {
+    width: 90vw;
+    object-fit: contain;
+  }
+
+  .hero h4 {
+    font-size: 24px;
+    width: 100vw;
+  }
+
+  .hero ul > li {
+    font-size: 20px;
+    width: 90vw;
+    line-height: 30px;
+  }
+
+  .upload {
+    font-size: 13px;
+    padding: 0 8vw;
+  }
+
+  .upload p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  .upload > .dragDropUpload {
+    margin: 1em 0em;
+    padding: 40px 40px;
+  }
+  
+  .dragDropUpload > p {
+    font-size: 16px;
+  }
+  
+  .dragDropUpload > button {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+  
+  .howTo > h3 {
+    font-size: 25px;
+    font-weight: 450;
+  }
+  
+  .howTo > p {
+    font-size: 16px;
+  }
+  
+  .cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq {
+    margin: 0 0;
+    padding: 2em;
+  }
+  
+  .faq > h3 {
+    font-size: 25px;
+  }
+
+  .footer {
+    font-size: 12px;
+  }
+}

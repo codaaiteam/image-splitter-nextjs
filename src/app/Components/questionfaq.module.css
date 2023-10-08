@@ -17,6 +17,7 @@
 
 .answer {
   overflow: hidden;
+  transition: all 4s;
 }
 
 .answer p {
@@ -28,7 +29,6 @@
 .answer.active {
   max-height: 1000px;
   font-size: 20px;
-  transition: all 2s;
 }
 
 @media (max-width: 540px) {
@@ -42,5 +42,19 @@
   
   .answer.active {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 950px) {
+  .question > p {
+    font-size: 20px;
+  }
+  
+  .answer p {
+    font-size: 20px;
+  }
+  
+  .answer.active {
+    font-size: 20px;
   }
 }
