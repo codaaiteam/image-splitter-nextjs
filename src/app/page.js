@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Card from "./Components/Card";
 import QuestionFAQ from "./Components/QuestionFAQ";
+import GridRecommendation from "./Components/GridRecommendation";
 
 export default function Home() {
   return (
@@ -84,7 +85,14 @@ export default function Home() {
           want to create a puzzle graphic yourself? Here are the ideal
           dimensions for Instagram grid posts:
         </p>
-        <h1>The images are in progress...</h1>
+        <div className={styles.cards}>
+          <GridRecommendation head="3x1 Grid" title="3240 x 1080px" alt="3x1" src="/grid-size/3-1-grid-1.webp"/>
+          <GridRecommendation head="3x2 Grid" title="3240 x 2160px" alt="3x2" src="/grid-size/3-2-grid-1.webp"/>
+          <GridRecommendation head="3x3 Grid" title="3240 x 3240px" alt="3x3" src="/grid-size/3-3-grid.webp"/>
+          <GridRecommendation head="3x4 Grid" title="3240 x 4329px" alt="3x4" src="/grid-size/3-4-grid.webp"/>
+          <GridRecommendation head="3x5 Grid" title="3240 x 5400px" alt="3x5" src="/grid-size/3-5-grid-1.webp"/>
+          <GridRecommendation head="3x6 Grid" title="3240 x 6480px" alt="3x6" src="/grid-size/3-6-grid.webp"/>
+        </div>
       </section>
       <section className={styles.hero}>
         <div className={styles.left}>
