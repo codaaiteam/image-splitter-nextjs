@@ -1,0 +1,32 @@
+.question {
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  color: var(--dark);
+  margin-bottom: 0.5em;
+  border-bottom: solid var(--dark) 1px;
+}
+
+.question > p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.answer {
+  overflow: hidden;
+}
+
+.answer p {
+  margin: 0;
+  font-size: 20px;
+  padding: 1em;
+}
+
+.answer.active {
+  max-height: 1000px;
+  font-size: 20px;
+  transition: all 2s;
+}
