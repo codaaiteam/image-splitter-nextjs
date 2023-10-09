@@ -1,5 +1,4 @@
-const sharp = require("sharp");
-const fs = require("fs");
+import sharp from "sharp";
 
 export default async function imageProcessingHandler(req, res) {
   try {
