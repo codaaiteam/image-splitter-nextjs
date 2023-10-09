@@ -13,14 +13,29 @@ function DragDrop() {
 
   const image = useRef(null);
 
-  function getSize() {
+  const [gridSize, setGridSize] = useState("");
+
+  const [chunks, setChunks] = useState([]);
+
+  useEffect(() => {
+    if (!image.current) return;
     const { clientHeight: newHeightSize, clientWidth: newWidthSize } =
       image.current || {};
     if (!newHeightSize || !newWidthSize) return "";
     const sizeX = (columns / (columns * columns)) * 100;
     const sizeY = (newWidthSize / columns / newHeightSize) * 100;
-    return `${sizeX}% ${isGrid ? sizeY : "100"}%`;
-  }
+    setGridSize(`${sizeX}% ${isGrid ? sizeY : "100"}%`);
+    setGridProperties({
+      sizeX,
+      sizeY,
+      isGrid,
+      imgY: newHeightSize,
+      imgX: newWidthSize,
+      columns: columns,
+    });
+
+    setChunks([]);
+  }, [columns, isGrid, selectedImage]);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -49,11 +64,43 @@ function DragDrop() {
     e.preventDefault();
   };
 
-  const submitImage = () => {
-    if (gridProperties != null) {
-      console.log(gridProperties)
+  const submitImage = async () => {
+    try {
+      if (gridProperties !== null && selectedImage !== null) {
+        console.log("Submitting image...");
+
+        const response = await fetch("/api/sendimage", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            properties: gridProperties,
+            img: selectedImage,
+          }),
+        });
+
+        if (response.ok) {
+          console.log("Image submitted successfully!");
+          response.json().then((x) => {
+            console.log(x);
+            setChunks(
+              x.chunksBase64.map((x) => {
+                return x.base64Data;
+              })
+            );
+          });
+        } else {
+          console.error("Error submitting image:", response.statusText);
+        }
+      } else {
+        console.error("Grid properties or selected image is missing.");
+      }
+    } catch (error) {
+      console.error("Error submitting image:", error);
     }
-  }
+  };
 
   return (
     <div
@@ -77,7 +124,7 @@ function DragDrop() {
               ref={image}
             />
             <div
-              style={{ backgroundSize: `${getSize()}` }}
+              style={{ backgroundSize: `${gridSize}` }}
               className={styles.gridPreview}
             ></div>
           </div>
@@ -144,7 +191,28 @@ function DragDrop() {
           <button onClick={(_) => submitImage()}>Split Image</button>
         </div>
         <div className={styles.right}>
-          <p>Your split posts will be here</p>
+          <div
+            className={styles.gridShow}
+            style={{
+              display: chunks.length > 0 ? "grid" : "none",
+              gridTemplateColumns: `repeat(${columns}, 1fr)`,
+            }}
+          >
+            {chunks &&
+              chunks.map((x, id) => (
+                <Image
+                  key={id}
+                  src={x}
+                  height={100}
+                  width={100}
+                  alt={`Image ${id}`}
+                />
+              ))}
+          </div>
+
+          <p style={{ display: chunks.length > 0 ? "none" : "block" }}>
+            Your split posts will be here
+          </p>
         </div>
       </div>
     </div>
