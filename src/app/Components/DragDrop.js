@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./dragdrop.module.css";
 import Image from "next/image";
 
@@ -6,12 +6,24 @@ function DragDrop() {
   const maxColumns = 10;
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const [columns, setColumns] = useState(5);
+  const [columns, setColumns] = useState(3);
   const [isGrid, setIsGrid] = useState(true);
 
+  const [size, setSize] = useState(0);
+
+  const image = useRef(null);
+
+  useEffect(() => {
+    setSize(image.current?.clientHeight);
+  }, [selectedImage]);
+
   function getSize() {
-    let size = (columns / (columns * columns)) * 100;
-    return `${size}% ${isGrid ? size : "100"}%`;
+    const { clientHeight: newHeightSize, clientWidth: newWidthSize } =
+      image.current || {};
+    if (!newHeightSize || !newWidthSize) return "";
+    const sizeX = (columns / (columns * columns)) * 100;
+    const sizeY = (newWidthSize / columns / newHeightSize) * 100;
+    return `${sizeX}% ${isGrid ? sizeY : "100"}%`;
   }
 
   const handleDrop = (e) => {
@@ -60,6 +72,7 @@ function DragDrop() {
               alt="Uploaded"
               height={200}
               width={200}
+              ref={image}
             />
             <div
               style={{ backgroundSize: `${getSize()}` }}
@@ -109,8 +122,22 @@ function DragDrop() {
             carousel posts.
           </p>
           <div className={styles.selectType}>
-            <p onClick={(_) => {setIsGrid(true)}} className={`${isGrid && styles.selectedType}`}>Grid</p>
-            <p onClick={(_) => {setIsGrid(false)}} className={`${!isGrid && styles.selectedType}`}>Carousel</p>
+            <p
+              onClick={(_) => {
+                setIsGrid(true);
+              }}
+              className={`${isGrid && styles.selectedType}`}
+            >
+              Grid
+            </p>
+            <p
+              onClick={(_) => {
+                setIsGrid(false);
+              }}
+              className={`${!isGrid && styles.selectedType}`}
+            >
+              Carousel
+            </p>
           </div>
           <button>Split Image</button>
         </div>
