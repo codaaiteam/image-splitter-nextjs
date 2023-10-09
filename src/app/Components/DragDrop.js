@@ -9,13 +9,9 @@ function DragDrop() {
   const [columns, setColumns] = useState(3);
   const [isGrid, setIsGrid] = useState(true);
 
-  const [size, setSize] = useState(0);
+  const [gridProperties, setGridProperties] = useState(null);
 
   const image = useRef(null);
-
-  useEffect(() => {
-    setSize(image.current?.clientHeight);
-  }, [selectedImage]);
 
   function getSize() {
     const { clientHeight: newHeightSize, clientWidth: newWidthSize } =
@@ -52,6 +48,12 @@ function DragDrop() {
   const handleDragOver = (e) => {
     e.preventDefault();
   };
+
+  const submitImage = () => {
+    if (gridProperties != null) {
+      console.log(gridProperties)
+    }
+  }
 
   return (
     <div
@@ -139,7 +141,7 @@ function DragDrop() {
               Carousel
             </p>
           </div>
-          <button>Split Image</button>
+          <button onClick={(_) => submitImage()}>Split Image</button>
         </div>
         <div className={styles.right}>
           <p>Your split posts will be here</p>
