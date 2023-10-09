@@ -155,7 +155,7 @@
   }
 
   .uploaded > .left {
-    width: 90%;
+    width: auto;
   }
   
   .uploaded > .right {
