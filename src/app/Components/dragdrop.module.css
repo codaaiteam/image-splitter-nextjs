@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 15%;
+  width: 100%;
 }
 
 .dragDropUpload > p {
@@ -107,6 +107,10 @@
   background-color: var(--gray);
 }
 
+.active > .dragDropUpload {
+  width: 15%;
+}
+
 .active .dragDropUpload > p {
   font-size: 12px;
 }
@@ -197,5 +201,9 @@
   .dragDropUpload > button {
     font-size: 16px;
     padding: 10px 14px;
+  }
+
+  .active > .dragDropUpload {
+    width: 80%;
   }
 }
