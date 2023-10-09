@@ -52,30 +52,6 @@
   color: var(--dark);
 }
 
-.upload > .dragDropUpload {
-  margin: 1em 0em;
-  padding: 50px 75px;
-  border: dashed var(--gray) 2px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.dragDropUpload > p {
-  font-size: 15px;
-}
-
-.dragDropUpload > button {
-  font-size: 18px;
-  padding: 10px 20px;
-  width: fit-content;
-  border: solid var(--gray) 1px;
-  background-color: transparent;
-  border-radius: 5px;
-}
-
 .howTo {
   text-align: center;
   display: flex;
@@ -200,20 +176,6 @@
     padding: 0 10vw;
   }
 
-  .upload > .dragDropUpload {
-    margin: 1em 3em;
-    padding: 40px 50px;
-  }
-
-  .dragDropUpload > p {
-    font-size: 12px;
-  }
-
-  .dragDropUpload > button {
-    font-size: 12px;
-    padding: 7px 12px;
-  }
-
   .recommendation > .cards {
     display: grid;
     grid-template-columns: 150px 150px 150px;
@@ -284,7 +246,7 @@
   }
 
   .hero ul > li {
-    font-size: 20px;
+    font-size: 16px;
     width: 90vw;
     line-height: 30px;
   }
@@ -295,23 +257,8 @@
   }
 
   .upload p {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 30px;
-  }
-
-  .upload > .dragDropUpload {
-    margin: 1em 0em;
-    padding: 40px 40px;
-    margin-bottom: 5em;
-  }
-
-  .dragDropUpload > p {
-    font-size: 16px;
-  }
-
-  .dragDropUpload > button {
-    font-size: 16px;
-    padding: 10px 14px;
   }
 
   .howTo > h3 {
@@ -334,6 +281,10 @@
     gap: 20px;
   }
 
+  .recommendation > p {
+    padding: 0 1em;
+  }
+
   .recommendation > h3 {
     font-size: 20px;
     padding: 0em 1em;
@@ -345,7 +296,7 @@
   }
 
   .faq > h3 {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .footer {

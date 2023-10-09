@@ -5,6 +5,8 @@
   --dark: #2d0634;
   --gray: #fedd56;
   --dark-gray: #842292;
+
+  --container: rgba(231, 213, 49, 0.093);
 }
 
 * {
@@ -27,4 +29,9 @@ ul, li {
 
 button {
   cursor: pointer;
+  width: fit-content;
+}
+
+p, li {
+  font-weight: 300;
 }

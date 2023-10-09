@@ -47,14 +47,14 @@
 
 @media (max-width: 950px) {
   .question > p {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .answer p {
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .answer.active {
-    font-size: 18px;
+    font-size: 16px;
   }
 }

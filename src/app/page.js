@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import Card from "./Components/Card";
 import QuestionFAQ from "./Components/QuestionFAQ";
 import GridRecommendation from "./Components/GridRecommendation";
+import DragDrop from "./Components/DragDrop";
 
 export default function Home() {
   return (
@@ -40,10 +41,7 @@ export default function Home() {
           Start with uploading your IG graphic, photo or puzzle to the Image
           Splitter tool
         </p>
-        <div id="upload" className={styles.dragDropUpload}>
-          <p>Drop your image here or click below to upload</p>
-          <button>Select Image</button>
-        </div>
+        <DragDrop/>
       </section>
       <section className={styles.howTo}>
         <h3>How to split photos into an IG grid?</h3>
@@ -82,7 +80,7 @@ export default function Home() {
       <section className={styles.recommendation}>
         <h3>Recommended Dimensions for Split Images</h3>
         <p>
-          want to create a puzzle graphic yourself? Here are the ideal
+          Want to create a puzzle graphic yourself? Here are the ideal
           dimensions for Instagram grid posts:
         </p>
         <div className={styles.cards}>
