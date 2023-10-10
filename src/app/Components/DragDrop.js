@@ -7,6 +7,7 @@ function DragDrop() {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [columns, setColumns] = useState(3);
+  const [maxHeight, setMaxHeight] = useState("auto");
   const [isGrid, setIsGrid] = useState(true);
 
   const [gridProperties, setGridProperties] = useState(null);
@@ -15,7 +16,9 @@ function DragDrop() {
 
   const image = useRef(null);
 
-  const [gridSize, setGridSize] = useState("");
+  const [crop, setCrop] = useState("0px");
+
+  const [gridSize, setGridSize] = useState("0px");
 
   const [chunks, setChunks] = useState([]);
 
@@ -27,6 +30,14 @@ function DragDrop() {
     const sizeX = (columns / (columns * columns)) * 100;
     const sizeY = (newWidthSize / columns / newHeightSize) * 100;
     setGridSize(`${sizeX}% ${isGrid ? sizeY : "100"}%`);
+
+    let expectedRows = Math.round(newHeightSize / (newWidthSize / 3));
+    let sideLength = Math.min(newHeightSize / expectedRows, newWidthSize / 3);
+
+    let cropA = Math.round(newHeightSize - (expectedRows * sideLength)) + "px";
+    console.log(cropA)
+    setCrop(cropA);
+
     setGridProperties({
       sizeX,
       sizeY,
@@ -119,7 +130,7 @@ function DragDrop() {
         <p>Drop your image here or click below to upload</p>
 
         {selectedImage && (
-          <div className={styles.imageContainer}>
+          <div className={styles.imageContainer} style={{clipPath: `inset(0 0 ${crop} 0)`}}>
             <Image
               src={selectedImage}
               alt="Uploaded"
