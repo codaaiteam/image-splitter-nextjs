@@ -11,6 +11,8 @@ function DragDrop() {
 
   const [gridProperties, setGridProperties] = useState(null);
 
+  const [requested, setRequested] = useState(false);
+
   const image = useRef(null);
 
   const [gridSize, setGridSize] = useState("");
@@ -68,6 +70,7 @@ function DragDrop() {
     try {
       if (gridProperties !== null && selectedImage !== null) {
         console.log("Submitting image...");
+        setRequested(true);
 
         const response = await fetch("/api/sendimage", {
           method: "POST",
@@ -85,6 +88,7 @@ function DragDrop() {
           console.log("Image submitted successfully!");
           response.json().then((x) => {
             console.log(x);
+            setRequested(false);
             setChunks(
               x.chunksBase64.map((x) => {
                 return x.base64Data;
@@ -209,10 +213,18 @@ function DragDrop() {
                 />
               ))}
           </div>
-
-          <p style={{ display: chunks.length > 0 ? "none" : "block" }}>
-            Your split posts will be here
-          </p>
+          {!requested ? (
+            <p style={{ display: chunks.length > 0 ? "none" : "block" }}>
+              Your split posts will be here
+            </p>
+          ) : (
+            <div className={styles.loading}>
+              <Image src="/loading.gif" height={50} width={50} alt="loading" />
+              <p style={{ display: chunks.length > 0 ? "none" : "block" }}>
+                Wait... We are splitting your image.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -4,13 +4,13 @@ export default async function imageProcessingHandler(req, res) {
   try {
     const imageData = req.body.img.replace(/^data:image\/\w+;base64,/, "");
     const buffer = Buffer.from(imageData, "base64");
-
-    const chunksBase64 = await processImage(
-      buffer,
-      req.body.properties.columns,
-      req.body.properties.columns
-    );
-
+    let { imgY, imgX, isGrid, columns } = req.body.properties;
+    let expectedColumns = columns;
+    let expectedRows = Math.round(imgY / (imgX / columns));
+    let sideLength = Math.min(imgY / expectedRows, imgX / expectedColumns);
+    let actualRows = isGrid ? imgY / sideLength : 1;
+    let actualColumns = imgX / sideLength;
+    const chunksBase64 = await processImage(buffer, actualColumns, actualRows);
     res
       .status(200)
       .json({ message: "Chunks created and saved...", chunksBase64 });
