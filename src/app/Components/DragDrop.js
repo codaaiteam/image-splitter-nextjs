@@ -3,7 +3,7 @@ import styles from "./dragdrop.module.css";
 import Image from "next/image";
 
 function DragDrop() {
-  const maxColumns = 10;
+  const maxColumns = 8;
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [columns, setColumns] = useState(3);
@@ -210,7 +210,7 @@ function DragDrop() {
                 console.log(base64String)
                 return (
                   <div className={styles.imageChunk} key={id}>
-                    <a className={styles.downloadIcon} href={base64String} download={`Online_Splitter-${id}.png`}><Image src="/download.png" height={25} width={25} alt="Download"/></a>
+                    <a className={styles.downloadIcon} href={base64String} download={`Online_Splitter-${id}.png`}><Image src="/download.svg" height={25} width={25} alt="Download"/></a>
                     <Image
                       src={base64String}
                       height={100}
@@ -227,7 +227,7 @@ function DragDrop() {
             </p>
           ) : (
             <div className={styles.loading}>
-              <Image src="/loading.gif" height={50} width={50} alt="loading" />
+              <Image src="/loading.gif" height={20} width={20} alt="loading" />
               <p style={{ display: chunks.length > 0 ? "none" : "block" }}>
                 Wait... We are splitting your image.
               </p>
