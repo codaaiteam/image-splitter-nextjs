@@ -14,16 +14,19 @@ function DragDrop() {
 
   const [requested, setRequested] = useState(false);
 
-  const image = useRef(null);
+  const [image, setImage] = useState(null)
 
   const [gridSize, setGridSize] = useState("0px");
 
   const [chunks, setChunks] = useState([]);
 
   useEffect(() => {
-    if (!image.current) return;
+    if (!image?.currentTarget?.naturalHeight || !image?.currentTarget?.naturalWidth) {
+      console.log("upload again")
+      return;
+    }
     const { naturalHeight: newHeightSize, naturalWidth: newWidthSize } =
-      image.current || {};
+      image.currentTarget || {};
     if (!newHeightSize || !newWidthSize) return "";
 
     const sizeX = (columns / (columns * columns)) * 100;
@@ -40,7 +43,7 @@ function DragDrop() {
     });
 
     setChunks([]);
-  }, [columns, isGrid, selectedImage]);
+  }, [columns, isGrid, image]);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -71,7 +74,7 @@ function DragDrop() {
 
   const submitImage = async () => {
     try {
-      if (gridProperties !== null && selectedImage !== null) {
+      if (gridProperties && selectedImage) {
         console.log("Submitting image...");
         setRequested(true);
 
@@ -90,7 +93,6 @@ function DragDrop() {
         if (response.ok) {
           console.log("Image submitted successfully!");
           response.json().then((x) => {
-            console.log(x);
             setRequested(false);
             setChunks(
               x.chunksBase64.map((x) => {
@@ -129,6 +131,9 @@ function DragDrop() {
               height={200}
               width={200}
               ref={image}
+              onLoad={(e) => {
+                setImage(e)
+              }}
             />
             <div
               style={{ backgroundSize: `${gridSize}` }}
@@ -207,7 +212,6 @@ function DragDrop() {
           >
             {chunks &&
               chunks.map((base64String, id) => {
-                console.log(base64String)
                 return (
                   <div className={styles.imageChunk} key={id}>
                     <a className={styles.downloadIcon} href={base64String} download={`Online_Splitter-${id}.png`}><Image src="/download.svg" height={25} width={25} alt="Download"/></a>
