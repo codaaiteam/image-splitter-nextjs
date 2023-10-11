@@ -4,13 +4,23 @@ export default async function imageProcessingHandler(req, res) {
   try {
     const imageData = req.body.img.replace(/^data:image\/\w+;base64,/, "");
     const buffer = Buffer.from(imageData, "base64");
-    let { imgY, imgX, isGrid, columns } = req.body.properties;
+    let { imgY, imgX, isGrid, columns, sizeY, sizeX } = req.body.properties;
     let expectedColumns = columns;
     let expectedRows = Math.round(imgY / (imgX / columns));
     let sideLength = Math.min(imgY / expectedRows, imgX / expectedColumns);
     let actualRows = isGrid ? imgY / sideLength : 1;
     let actualColumns = imgX / sideLength;
-    const chunksBase64 = await processImage(buffer, actualColumns, actualRows);
+
+    const chunksBase64 = await processImage(
+      buffer,
+      actualColumns,
+      actualRows,
+      sideLength,
+      columns,
+      expectedRows,
+      sizeY,
+      sizeX
+    );
     res
       .status(200)
       .json({ message: "Chunks created and saved...", chunksBase64 });
@@ -20,9 +30,35 @@ export default async function imageProcessingHandler(req, res) {
   }
 }
 
-async function processImage(buffer, numColumns, numRows) {
-  const metadata = await sharp(buffer).metadata();
+async function processImage(
+  buffer,
+  numColumns,
+  numRows,
+  sideLength,
+  columns,
+  rows,
+  rowSize
+) {
+  const metadataExtend = await sharp(buffer).metadata();
+  const { width: extendWidth, height: extendHeight } = metadataExtend;
+
+  const extendedY = Math.max(
+    0,
+    parseInt(extendHeight * (rowSize / 100) * rows - extendHeight)
+  );
+  const extendedX = Math.max(0, parseInt(extendWidth - sideLength * columns));
+
+  const extendedBuffer = await sharp(buffer)
+    .extend({
+      bottom: extendedY,
+      right: extendedX,
+      background: { r: 255, g: 255, b: 255, alpha: 0 },
+    })
+    .toBuffer();
+
+  const metadata = await sharp(extendedBuffer).metadata();
   const { width, height } = metadata;
+
   const chunkWidth = Math.floor(width / numColumns);
   const chunkHeight = Math.floor(height / numRows);
 
@@ -35,7 +71,7 @@ async function processImage(buffer, numColumns, numRows) {
       const startX = col * chunkWidth;
       const startY = row * chunkHeight;
 
-      const promise = sharp(buffer)
+      const promise = sharp(extendedBuffer)
         .extract({
           left: startX,
           top: startY,
@@ -49,9 +85,7 @@ async function processImage(buffer, numColumns, numRows) {
           )}`;
           chunksBase64.push({ row, col, base64Data });
         })
-        .catch((err) => {
-          console.error("Error extracting chunk:", err);
-        });
+        .catch((err) => {});
 
       promises.push(promise);
     }
@@ -59,9 +93,7 @@ async function processImage(buffer, numColumns, numRows) {
 
   try {
     await Promise.all(promises);
-  } catch (error) {
-    console.error("Error processing promises:", error);
-  }
+  } catch (error) {}
 
   chunksBase64.sort((a, b) =>
     a.row === b.row ? a.col - b.col : a.row - b.row

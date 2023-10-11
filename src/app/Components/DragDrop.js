@@ -16,27 +16,19 @@ function DragDrop() {
 
   const image = useRef(null);
 
-  const [crop, setCrop] = useState("0px");
-
   const [gridSize, setGridSize] = useState("0px");
 
   const [chunks, setChunks] = useState([]);
 
   useEffect(() => {
     if (!image.current) return;
-    const { clientHeight: newHeightSize, clientWidth: newWidthSize } =
+    const { naturalHeight: newHeightSize, naturalWidth: newWidthSize } =
       image.current || {};
     if (!newHeightSize || !newWidthSize) return "";
+
     const sizeX = (columns / (columns * columns)) * 100;
     const sizeY = (newWidthSize / columns / newHeightSize) * 100;
     setGridSize(`${sizeX}% ${isGrid ? sizeY : "100"}%`);
-
-    let expectedRows = Math.round(newHeightSize / (newWidthSize / 3));
-    let sideLength = Math.min(newHeightSize / expectedRows, newWidthSize / 3);
-
-    let cropA = Math.round(newHeightSize - (expectedRows * sideLength)) + "px";
-    console.log(cropA)
-    setCrop(cropA);
 
     setGridProperties({
       sizeX,
@@ -130,7 +122,7 @@ function DragDrop() {
         <p>Drop your image here or click below to upload</p>
 
         {selectedImage && (
-          <div className={styles.imageContainer} style={{clipPath: `inset(0 0 ${crop} 0)`}}>
+          <div className={styles.imageContainer}>
             <Image
               src={selectedImage}
               alt="Uploaded"
@@ -210,19 +202,24 @@ function DragDrop() {
             className={styles.gridShow}
             style={{
               display: chunks.length > 0 ? "grid" : "none",
-              gridTemplateColumns: `repeat(${columns}, 1fr)`,
+              gridTemplateColumns: `repeat(${columns}, 0fr)`,
             }}
           >
             {chunks &&
-              chunks.map((x, id) => (
-                <Image
-                  key={id}
-                  src={x}
-                  height={100}
-                  width={100}
-                  alt={`Image ${id}`}
-                />
-              ))}
+              chunks.map((base64String, id) => {
+                console.log(base64String)
+                return (
+                  <div className={styles.imageChunk} key={id}>
+                    <a className={styles.downloadIcon} href={base64String} download={`Online_Splitter-${id}.png`}><Image src="/download.png" height={25} width={25} alt="Download"/></a>
+                    <Image
+                      src={base64String}
+                      height={100}
+                      width={100}
+                      alt={`Image ${id}`}
+                    />
+                  </div>
+                );
+              })}
           </div>
           {!requested ? (
             <p style={{ display: chunks.length > 0 ? "none" : "block" }}>
