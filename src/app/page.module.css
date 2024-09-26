@@ -163,6 +163,16 @@
   color: var(--gray);
 }
 
+
+.footer a {
+  color: var(--gray);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 540px) {
   .hero > .left,
   .hero > .right {

@@ -91,7 +91,7 @@ const scrollToGame = () => {
       <section className={styles.hero}>
         <div className={styles.left}>
           <h1>Paper Minecraft: A Unique 2D Minecraft Experience</h1>
-                    <p>Play the classic Minecraft in a new 2D perspective</p>
+           <p>Play the classic Minecraft in a new 2D perspective</p>
           <button onClick={scrollToGame}>Play Now</button>
         </div>
         <div className={styles.right}>
@@ -265,11 +265,7 @@ const scrollToGame = () => {
           answer="Yes, Paper Minecraft is completely free to play in your web browser."
         />
       </section>
-      <footer className={styles.footer}>
-        <a>Terms and Conditions</a>
-        <a>Privacy Policy</a>
-        <a>License Agreement</a>
-      </footer>
+      <Footer />
     </main>
     </>
   );
