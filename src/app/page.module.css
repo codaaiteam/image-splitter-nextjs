@@ -6,6 +6,32 @@
 
 .hero {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.heroContent {
+  flex: 1;
+}
+
+.logoAndTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logoAndTitle h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.heroImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero > .left,
@@ -210,6 +236,52 @@
     font-size: 12px;
   }
 }
+.gameContainer {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  background-image: url('/cover.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.playButtonContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.playButton {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #4CAF50;
+  color: white;
+  border: 3px solid #45a049;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.playButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+}
+
+.playButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
 
 @media (max-width: 950px) {
   .hero {
@@ -302,4 +374,292 @@
   .footer {
     font-size: 10px;
   }
+}
+/* 在文件末尾添加以下新的样式规则 */
+
+.game {
+  width: 100%;
+  padding: 40px 0;
+  background-color: var(--light);
+}
+
+.gameContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameContent p {
+  color: var(--dark);
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 800px; /* 限制段落的最大宽度 */
+}
+
+.gameContainer {
+  width: 100%;
+  max-width: 1000px;
+  height: 600px;
+  position: relative;
+  background-image: url('/cover.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 30px auto 0;
+}
+/* 更新现有的 .playButtonContainer 和 .playButton 样式 */
+.playButtonContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.playButton {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: var(--dark-gray);
+  color: var(--light);
+  border: 3px solid var(--gray);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.playButton:hover {
+  background-color: var(--gray);
+  color: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+}
+
+.playButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* 添加响应式设计 */
+@media (max-width: 768px) {
+  .gameContent {
+    padding: 0 5%; /* 增加小屏幕上的内边距 */
+  }
+
+  .gameContent p {
+    font-size: 16px;
+  }
+
+  .gameContainer {
+    height: 400px; /* 在小屏幕上减小高度 */
+  }
+  .playButton {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .logoAndTitle {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logoAndTitle h1 {
+    font-size: 1.5rem;
+  }
+}
+/* 在 page.module.css 中更新 howTo 部分的样式 */
+
+.howTo {
+  text-align: center;
+  background-color: var(--gray);
+  padding: 4em 0;
+  overflow-x: auto; /* 允许在小屏幕上水平滚动 */
+}
+
+.howToContent {
+  max-width: 1400px; /* 增加最大宽度以适应一行四个卡片 */
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.howTo h3 {
+  font-size: 40px;
+  font-weight: 450;
+  margin-bottom: 20px;
+}
+
+.howTo > p {
+  font-size: 17px;
+  margin-bottom: 40px;
+}
+
+.howTo .cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* 减小卡片之间的间距 */
+  min-width: min-content; /* 确保在小屏幕上不会换行 */
+}
+
+.howTo .cards > * {
+  flex: 0 0 auto; /* 防止卡片被压缩 */
+  width: calc(25% - 15px); /* 四个卡片等宽，考虑间距 */
+  min-width: 200px; /* 设置最小宽度 */
+}
+
+@media (max-width: 1200px) {
+  .howTo .cards {
+    justify-content: flex-start; /* 在较小屏幕上左对齐 */
+    padding-bottom: 20px; /* 为可能的滚动条留出空间 */
+  }
+
+  .howTo .cards > * {
+    width: calc(50% - 10px); /* 在中等屏幕上每行两个卡片 */
+  }
+}
+
+@media (max-width: 768px) {
+  .howToContent {
+    padding: 0 3%;
+  }
+
+  .howTo h3 {
+    font-size: 30px;
+  }
+
+  .howTo > p {
+    font-size: 15px;
+  }
+
+  .howTo .cards > * {
+    width: 100%; /* 在小屏幕上每行一个卡片 */
+  }
+}
+
+/* 在 page.module.css 中更新以下样式 */
+
+.features {
+  width: 100%;
+  padding: 60px 0;
+  background-color: var(--light);
+  overflow-x: auto; /* 允许在小屏幕上水平滚动 */
+}
+
+.featuresContent {
+  max-width: 1400px; /* 增加最大宽度以适应一行四个卡片 */
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.features h3 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* 减小卡片之间的间距 */
+  min-width: min-content; /* 确保在小屏幕上不会换行 */
+}
+
+.cards > * {
+  flex: 0 0 auto; /* 防止卡片被压缩 */
+  width: calc(25% - 15px); /* 四个卡片等宽，考虑间距 */
+  min-width: 200px; /* 设置最小宽度 */
+}
+
+@media (max-width: 1200px) {
+  .cards {
+    justify-content: flex-start; /* 在较小屏幕上左对齐 */
+    padding-bottom: 20px; /* 为可能的滚动条留出空间 */
+  }
+
+  .cards > * {
+    width: calc(50% - 10px); /* 在中等屏幕上每行两个卡片 */
+  }
+}
+
+@media (max-width: 768px) {
+  .featuresContent {
+    padding: 0 3%;
+  }
+
+  .features h3 {
+    font-size: 30px;
+  }
+
+  .cards > * {
+    width: 100%; /* 在小屏幕上每行一个卡片 */
+  }
+}
+
+.gameWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.gameIframe {
+  border: none;
+  display: block;
+  width: 100%;
+  height: 600px;
+}
+
+.fullscreenButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: white; /* This sets the color of the SVG icon */
+}
+
+.fullscreenButton:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.fullscreenButton svg {
+  width: 24px;
+  height: 24px;
+}
+.gameTip {
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+  color: #666;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  width: 100%;
 }

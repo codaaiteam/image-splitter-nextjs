@@ -1,0 +1,22 @@
+/* src/components/Footer/Footer.module.css */
+.footer {
+  background-color: var(--dark-gray);
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  color: var(--gray);
+}
+
+.footer a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+  .footer {
+    font-size: 12px;
+  }
