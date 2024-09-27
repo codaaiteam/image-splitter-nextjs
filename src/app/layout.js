@@ -5,6 +5,7 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
+  metadataBase: new URL('https://localhost:3000'),	
   title: 'Paper Minecraft: A Unique 2D Minecraft Experience',
   description: 'Experience Minecraft like never before in this 2D reimagining. Craft, explore, and survive in a unique paper-like world with Paper Minecraft!',
   keywords: ['Paper Minecraft', '2D Minecraft', 'browser game', 'craft', 'explore', 'survive'],

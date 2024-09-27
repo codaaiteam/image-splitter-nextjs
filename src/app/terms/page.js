@@ -1,5 +1,5 @@
 // pages/terms.js
-import styles from './Legal.module.css';
+import styles from '../../api/Legal.module.css';
 
 export default function Terms() {
   return (
