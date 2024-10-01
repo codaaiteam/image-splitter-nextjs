@@ -5,7 +5,7 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  metadataBase: new URL('https://localhost:3000'),	
+  metadataBase: new URL('https://papermc-game.vercel.app'),	
   title: 'Paper Minecraft: A Unique 2D Minecraft Experience',
   description: 'Experience Minecraft like never before in this 2D reimagining. Craft, explore, and survive in a unique paper-like world with Paper Minecraft!',
   keywords: ['Paper Minecraft', '2D Minecraft', 'browser game', 'craft', 'explore', 'survive'],
@@ -13,17 +13,17 @@ export const metadata = {
     title: 'Paper Minecraft: A Unique 2D Minecraft Experience',
     description: 'Experience Minecraft like never before in this 2D reimagining. Craft, explore, and survive in a unique paper-like world!',
     type: 'website',
-    url: 'https://your-website-url.com',
-    images: [{ url: 'https://your-website-url.com/paper-minecraft-og-image.jpg' }],
+    url: 'https://papermc-game.vercel.app',
+    images: [{ url: 'https://papermc-game.vercel.app/discover.svg' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Paper Minecraft: A Unique 2D Minecraft Experience',
     description: 'Experience Minecraft like never before in this 2D reimagining. Craft, explore, and survive in a unique paper-like world!',
-    images: ['https://your-website-url.com/paper-minecraft-twitter-image.jpg'],
+    images: ['https://papermc-game.vercel.app/discover.svg'],
   },
   robots: 'index, follow',
-  canonical: 'https://your-website-url.com',
+  canonical: 'https://papermc-game.vercel.app',
 }
 
 export default function RootLayout({ children }) {
@@ -34,8 +34,7 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Google Search Console Verification - Replace with actual code when available */}
-        <meta name="google-site-verification" content="YOUR_GOOGLE_SITE_VERIFICATION_CODE" />
-      </head>
+		<meta name="google-site-verification" content="MAqpkT7W3YB3HWdCtKGCFP0XmO_yp04yoIMFr5Y75pQ" />      </head>
       <body className={inter.className}>
         {children}
         {/* Google Analytics - Replace with actual code when available */}
