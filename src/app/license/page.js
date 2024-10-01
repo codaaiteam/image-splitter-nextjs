@@ -1,5 +1,5 @@
 // pages/license.js
-import styles from '../../api/Legal.module.css';
+import styles from '@/styles/Legal.module.css';
 
 export default function License() {
   return (
