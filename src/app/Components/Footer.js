@@ -8,6 +8,8 @@ const Footer = () => {
       <Link href="/terms">Terms and Conditions</Link>
       <Link href="/privacy">Privacy Policy</Link>
       <Link href="/license">License Agreement</Link>
+      <Link href="https://www.playsprunkiphrase4.com">Play Sprunki Phase 4</Link>
+
     </footer>
   );
 };
