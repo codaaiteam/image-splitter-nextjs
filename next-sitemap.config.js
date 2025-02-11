@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://image-splitter.com', // Replace with your actual domain
+  siteUrl: process.env.SITE_URL || 'https://papermc-game.vercel.app/', // Replace with your actual domain
   generateRobotsTxt: true,
   generateIndexSitemap: true,
   changefreq: 'daily',
