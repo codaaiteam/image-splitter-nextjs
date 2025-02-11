@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Host
+Host: https://image-splitter.com
+
+# Sitemaps
+Sitemap: https://image-splitter.com/sitemap.xml
